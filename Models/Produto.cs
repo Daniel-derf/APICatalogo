@@ -15,7 +15,7 @@ public class Produto
 
     [Required(ErrorMessage = "A descrição do produto é obrigatória")]
     [StringLength(300, ErrorMessage = "A descrição do produto deve ter no máximo 300 caracteres")]
-    public int Descricao { get; set; }
+    public string Descricao { get; set; }
 
     [Required(ErrorMessage = "O preço do produto é obrigatório")]
     [Column(TypeName = "decimal(10,2)")]
