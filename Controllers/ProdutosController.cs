@@ -28,4 +28,17 @@ public class ProdutosController : ControllerBase
         return produtos;
     }
 
+    [HttpGet("{id:int}", Name = "ObterProduto")]
+    public ActionResult<Produto> Get(int id)
+    {
+        var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+
+        if (produto is null)
+        {
+            return NotFound();
+        }
+
+        return produto;
+    }
+
 }
