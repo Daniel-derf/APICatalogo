@@ -37,12 +37,14 @@ namespace APICatalogo.Controllers
             return categoria;
         }
 
-        [HttpGet("{id:int}/produtos")]
-        public ActionResult GetCategoriaProducts(int id)
+        [HttpGet("Produtos")]
+        public ActionResult GetCategoriaWithProdutos()
         {
-            var produtos = _context.Produtos.Where(p => p.CategoriaId == id).ToList();
+            var categorias = _context.Categorias
+            .Include(c => c.Produtos)
+            .ToList();
 
-            return Ok(produtos);
+            return Ok(categorias);
         }
 
         [HttpPost]
