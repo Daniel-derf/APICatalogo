@@ -37,6 +37,14 @@ namespace APICatalogo.Controllers
             return categoria;
         }
 
+        [HttpGet("{id:int}/produtos")]
+        public ActionResult GetCategoriaProducts(int id)
+        {
+            var produtos = _context.Produtos.Where(p => p.CategoriaId == id).ToList();
+
+            return Ok(produtos);
+        }
+
         [HttpPost]
         public ActionResult Post(Categoria categoria)
         {
@@ -81,7 +89,6 @@ namespace APICatalogo.Controllers
 
             return Ok(categoria);
         }
-
 
     }
 }
