@@ -19,9 +19,18 @@ namespace APICatalogo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
-            var categorias = _context.Categorias.AsNoTracking().ToList();
+            try
+            {
+                var categorias = _context.Categorias.AsNoTracking().ToList();
+                return Ok(categorias);
 
-            return Ok(categorias);
+                // throw new DataMisalignedException(); erro gerado para teste
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                "Ocorreu um problema ao tratar a sua solicitação");
+            }
         }
 
         [HttpGet("{id:int}", Name = "ObterCategoria")]
